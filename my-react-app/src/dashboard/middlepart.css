@@ -1,0 +1,37 @@
+#main{
+    display: flex;
+    flex-direction: column;
+}
+
+
+#header{
+    width: 82vw;
+}
+
+#stats{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+#stats p,h1{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bold;
+}
+#stats p{
+    color: rgb(97, 96, 96);
+}
+
+
+
+.MoneyCards{
+    display: flex;
+    flex-direction: column;
+    margin: 5px;
+    padding: 10px;
+    background: #f5f0f0;
+    border-radius: 10px;
+    width: 300px;
+    height: 80px;
+}
+
