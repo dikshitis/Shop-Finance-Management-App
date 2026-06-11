@@ -1,6 +1,8 @@
 const mysql = require("mysql2");
 const express = require("express");
 const cors = require("cors");
+require('dotenv').config();
+const PASSWORD = process.env.PASSWORD
 
 const app = express();
 
@@ -10,7 +12,7 @@ app.use(express.json());
 const db = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "",
+  password: PASSWORD,
   database: "dokan",
   port: 3306,
 });
