@@ -1,4 +1,5 @@
 import { useState,useEffect} from 'react'
+import {Route, BrowserRouter, Routes} from "react-router-dom";
 import './App.css'
 import UserInputs from './userinputs'
 import DashBoard from './dashboard/dashboard'
@@ -17,12 +18,12 @@ if(datas.length === 0) return <div>Loading...</div>
 else{ 
   return (
     <>
-  
-      <div id='container'>
-
-          <DashBoard name={datas}/>
-
-      </div>
+  <BrowserRouter>
+      <Routes>
+        <Route path='/dashboard' element={<DashBoard name={datas} />} />
+        <Route path='/calculate' element={<UserInputs data={datas}/>} />
+      </Routes>
+    </BrowserRouter>
 
     </>
   )

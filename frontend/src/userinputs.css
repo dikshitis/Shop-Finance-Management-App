@@ -1,0 +1,25 @@
+#calculateContainer{
+    display: flex;
+    flex-direction: row;
+}
+
+
+#calculate{
+    width: 83vw;
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
+    grid-template-rows: auto auto ;
+    margin-top: 25vh;
+    align-content: start;
+    gap: 4px;
+    margin-left: 4px;
+    
+}
+
+.inputElements{
+    height: 40px;
+}
+
+#addData{
+    background: rgb(34, 33, 33);
+}
