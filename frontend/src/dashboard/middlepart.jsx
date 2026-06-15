@@ -1,14 +1,61 @@
     import { useState } from "react";
     import "./middlepart.css"
-    import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+    import { Bar } from 'react-chartjs-2';
+    import {
+        Chart as ChartJS,
+        CategoryScale,
+        LinearScale,
+        BarElement,
+        Title,
+        Tooltip,
+        Legend,
+        } from 'chart.js';
 
-    function Middlepart(props){
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
-        const keys = Object.keys(props.data)
-        const lastIndex = keys.length - 1
-        console.log(props.data)
 
+function Middlepart(props){
 
+    const keys = Object.keys(props.data)
+    const lastIndex = keys.length - 1
+    console.log(props.data)
+
+    const Totalsales = props.data.slice(-7).map((item,index) => {
+        if (index === 0) return 0
+        return item.total - props.data.slice(-7)[index - 1].total
+    })
+
+    const barData = {
+        labels: props.data.slice(-7).map(item => item.day),
+        datasets: [
+            {
+            labels: "Total",
+            data: Totalsales,
+            backgroundColor: 'rgba(54, 162, 235, 0.6)',
+            borderColor: 'rgba(54, 162, 235, 1)',
+            borderWidth: 1, 
+            }
+    ]}
+
+    const BarOptions = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'top',
+      },
+      title: {
+        display: true,
+        text: 'Day wise Sales Charts',
+      },
+    },
+  };
 
 
 
@@ -31,7 +78,7 @@
 
                     <div id="monthlyReveneu" className="MoneyCards">
                         <p>Total Last Sales</p>
-                        <h1>Rs. {props.data[lastIndex].total}</h1>
+                        <h1>Rs. {props.data[lastIndex].total - props.data[lastIndex-1].total}</h1>
                     </div>
                         
 
@@ -43,10 +90,13 @@
 
                 <div id="charts">
 
-                    <div id="salesCharts">
+                    <div id="salesCharts" style={{ width: '600px'}}>
 
+                        <Bar data={barData} options={BarOptions} />
                         
                     </div>
+
+                    
 
                 </div>
 

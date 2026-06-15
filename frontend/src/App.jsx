@@ -1,6 +1,5 @@
 import { useState,useEffect} from 'react'
 import {Route, BrowserRouter, Routes} from "react-router-dom";
-import './App.css'
 import UserInputs from './userinputs'
 import DashBoard from './dashboard/dashboard'
 
