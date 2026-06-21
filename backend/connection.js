@@ -36,19 +36,21 @@ app.get("/users", (req,res) =>{
 
 
 
-const addqry = "insert into datas (`date`,`five`,`ten`,`twenty`,`fifty`,`hundred`,`fivehundred`,`thousand`,`inr`,`day`,`total`) values (?,?,?,?,?,?,?,?,?,?,?)";
+const addqry = "insert into datas (`date`,`five`,`ten`,`twenty`,`fifty`,`hundred`,`fivehundred`,`thousand`,`inr`,`day`,`totalcash`,`purchaseone`,`purchasetwo`,`purchasethree`, `totalpurchase`,`total`,`totalSalesNot`,`pl`) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
 app.post("/users", (req, res) => {
-  const { date,five,ten,twenty,fifty,hundred,fivehundred,thousand,inr,day} = req.body;
-  const total = five*5 +ten*10 +twenty*20 +fifty*50 +hundred*100 +fivehundred*500 +thousand*1000 +inr*1.6;
-  console.log(total)
-  console.log(req.body)
+  const { date,five,ten,twenty,fifty,hundred,fivehundred,thousand,inr,day,purchaseone,purchasetwo,purchasethree,totalSalesNot} = req.body;
+  const totalcash = five*5 +ten*10 +twenty*20 +fifty*50 +hundred*100 +fivehundred*500 +thousand*1000 +inr*1.6;
+  const totatpurchase =  Number(purchaseone) + Number(purchasetwo) + Number(purchasethree)
+  const total = totalcash + totatpurchase
+  const pl = totalSalesNot - totatpurchase 
 
+ 
 
 
   db.query(
     addqry,
-    [date,five,ten,twenty,fifty,hundred,fivehundred,thousand,inr,day,total],
+    [date,five,ten,twenty,fifty,hundred,fivehundred,thousand,inr,day,totalcash,purchaseone,purchasetwo,purchasethree,totatpurchase,total,totalSalesNot,pl],
     (err, result) => {
       if (err) return res.json(err);
       res.json({ message: "Data Added" });

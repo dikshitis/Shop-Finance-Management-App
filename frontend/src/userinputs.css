@@ -3,6 +3,12 @@
     flex-direction: row;
 }
 
+#secondContainer{
+    display: flex;
+    flex-wrap: wrap;
+    width: 82vw;
+    justify-content: center;
+}
 
 #calculate{
     width: 83vw;
